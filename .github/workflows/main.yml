@@ -43,6 +43,8 @@ jobs:
               run: |
                   unset CI
                   npm run build
+              env:
+                  REACT_APP_API_URI: ${{ secrets.REACT_APP_API_URI }}
 
             # Deploy to the S3 server
             - name: Deploy to S3
