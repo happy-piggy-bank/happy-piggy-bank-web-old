@@ -1,9 +1,15 @@
 @import url('https://cdn.statically.io/gh/KeepSOBP/NanumBarunpen/master/nanumbarunpen.min.css');
 
+* {
+    margin: 0; 
+    padding: 0;
+}
+
 #root {
     display: flex;
     justify-content: center;
     font-family: NanumBarunpen, sans-serif;
+    background-image: linear-gradient(to top, #fdfcfb 0%, #e2d1c3 100%);
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
