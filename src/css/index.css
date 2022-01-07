@@ -1,7 +1,19 @@
+* {    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+@import url('https://cdn.statically.io/gh/KeepSOBP/NanumBarunpen/master/nanumbarunpen.min.css');
+
 #root {
-    width: 100%;
-    max-width: 425px;
-    min-height: 100vh;
-    margin: 0 auto;
-    background: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: NanumBarunpen, sans-serif;
+    background-image: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
