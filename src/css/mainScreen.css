@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: 'UhBeemysen';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeemysen.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mainScreenContainer {
+    text-align: center;
+}
+
+.headerArea {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.titleText {
+    font-family: 'UhBeemysen';
+    font-size: 7vh;
+}
+
+.descriptionText {
+    font-size: 2vh;
+}
+
+.footerArea {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
