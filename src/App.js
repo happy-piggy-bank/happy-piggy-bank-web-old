@@ -1,10 +1,15 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './css/app.css';
+
+import MainScreen from './components/mainScreen'
 
 function App() {
   return (
     <div className="mainContainer">
-      <p>아직 준비중이에요!</p>
+      <Routes>
+        <Route path="/" element={<MainScreen/>} />
+      </Routes>
     </div>
   );
 }
