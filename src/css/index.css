@@ -8,6 +8,7 @@
 #root {
     display: flex;
     justify-content: center;
+    min-height: 100vh;
     font-family: NanumBarunpen, sans-serif;
     background-image: linear-gradient(to top, #fdfcfb 0%, #e2d1c3 100%);
     -webkit-touch-callout: none;
