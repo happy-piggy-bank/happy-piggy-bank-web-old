@@ -1,17 +1,4 @@
-.mainScreenContainer {
-    text-align: center;
-}
-
-.headerArea {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
 .bodyArea {
     font-size: 2.5vh;
-}
-
-.footerArea {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    text-align: center;
 }

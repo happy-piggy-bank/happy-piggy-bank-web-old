@@ -2,13 +2,17 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './css/app.css';
 
-import MainScreen from './components/mainScreen'
+import MainScreen from './components/mainScreen';
+import LoginScreen from './components/loginScreen';
+import JoinScreen from './components/joinScreen';
 
 function App() {
   return (
     <div className="mainContainer">
       <Routes>
-        <Route path="/" element={<MainScreen/>} />
+        <Route index element={<MainScreen/>} />
+          <Route path="login" element={<LoginScreen/>} />
+          <Route path="join" element={<JoinScreen/>} />
       </Routes>
     </div>
   );

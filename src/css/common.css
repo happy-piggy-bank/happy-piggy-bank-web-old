@@ -5,6 +5,12 @@
     font-style: normal;
 }
 
+.headerArea {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .titleText {
     font-family: 'UhBeemysen';
     font-size: 7vh;
@@ -44,4 +50,10 @@
 
 .primaryButton:hover {
     background: #ed6f78;
+}
+
+.footerArea {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
 }
