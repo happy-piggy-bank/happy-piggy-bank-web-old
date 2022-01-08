@@ -2,7 +2,8 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import piggyBankImg from '../images/piggy_bank.png';
-import '../css/mainScreen.css';
+import '../css/common/mainHeader.css';
+import '../css/common/mainFooter.css';
 
 import MainHeader from './common/mainHeader';
 import MainFooter from './common/mainFooter';
