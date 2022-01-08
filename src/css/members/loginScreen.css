@@ -1,0 +1,13 @@
+.loginBodyArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loginBoxArea {
+    width: 80%;
+    height: 300px;
+    border-radius: 30px;
+    background: whitesmoke;
+    margin-bottom: 15px;
+    padding: 30px;
+}
