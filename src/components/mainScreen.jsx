@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import piggyBankImg from '../images/piggy_bank.png';
@@ -9,7 +9,17 @@ import MainFooter from './common/mainFooter';
 import PrimaryButton from './common/primaryButton';
 
 const MainScreen = () => {
+    const [mainScreenRoute, setMainScreenRoute] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const authToken = localStorage.getItem('authToken');
+        if (authToken) {
+            setMainScreenRoute('myBank');
+        } else {
+            setMainScreenRoute('login');
+        }
+    }, []);
 
     return (
         <div className='mainScreenContainer'>
@@ -21,7 +31,7 @@ const MainScreen = () => {
                 <p>0개의 행복했던 순간과 함께</p>
                 <p>0원을 저금하고 있어요</p>
                 <p>&nbsp;</p>
-                <PrimaryButton buttonText="시작하기" onClick={() => navigate('login')} />
+                <PrimaryButton buttonText="시작하기" onClick={() => navigate(mainScreenRoute)} />
             </div>
             <MainFooter/>
         </div>
