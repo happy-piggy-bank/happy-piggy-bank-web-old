@@ -14,7 +14,7 @@ const MainScreen = () => {
     return (
         <div className='mainScreenContainer'>
             <MainHeader/>
-            <div className='bodyArea'>
+            <div className='mainBodyArea'>
                 <img src={piggyBankImg} width="60%" alt='돼지 저금통' />
                 <p>&nbsp;</p>
                 <p>0명의 사람들이</p>

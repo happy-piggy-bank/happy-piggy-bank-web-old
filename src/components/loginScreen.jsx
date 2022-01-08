@@ -7,7 +7,7 @@ const LoginScreen = () => {
     return (
         <div className='loginScreenContainer'>
             <MainHeader/>
-            <div className='bodyArea'>
+            <div className='loginBodyArea'>
                 <p>로그인 화면</p>
             </div>
             <MainFooter/>

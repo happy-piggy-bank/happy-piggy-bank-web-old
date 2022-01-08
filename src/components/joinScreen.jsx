@@ -7,7 +7,9 @@ const JoinScreen = () => {
     return (
         <div className='joinScreenContainer'>
             <MainHeader/>
-            <div className='bodyArea'></div>
+            <div className='joinBodyArea'>
+                <p>회원가입 화면</p>
+            </div>
             <MainFooter/>
         </div>
     );
