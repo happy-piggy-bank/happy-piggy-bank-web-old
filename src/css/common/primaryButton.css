@@ -10,11 +10,11 @@
     font-family: NanumBarunpen;
     font-size: 2.5vh;
     font-weight: 900;
-    background: #ff7981;
+    background: #E5AA70;
     color: #fff;
     border-radius: 30px;
     border-width: 0;
-    box-shadow: 0 4px 0 #cd4b53;
+    box-shadow: 0 4px 0 #C19A6B;
     line-height: 20px;
 }
 
@@ -28,9 +28,9 @@
     position: absolute;
     margin: auto;
     border-radius: 22px;
-    border: 2px dashed #ffb5b9;
+    border: 2px dashed #F2D2BD;
 }
 
 .primaryButton:hover {
-    background: #ed6f78;
+    background: #DAA06D;
 }
