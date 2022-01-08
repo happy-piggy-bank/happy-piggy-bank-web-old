@@ -1,0 +1,26 @@
+.inputBarContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 7.5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputBarInputArea {
+    width: 100%;
+    border-radius: 30px;
+    border: #DEB887 solid 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: NanumBarunpen, sans-serif;
+    font-size: 2vh;
+}
+
+.inputBarInputArea:hover {
+    border: #A0522D solid 1px;
+}
+
+.inputBarInputArea:focus {
+    outline: #A0522D solid 1px;
+}
