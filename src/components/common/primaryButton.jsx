@@ -1,9 +1,11 @@
 import React from 'react';
-import '../../css/common.css';
+import '../../css/common/primaryButton.css';
 
 const PrimaryButton = ({ buttonText, onClick }) => {
     return (
-        <button className='primaryButton' onClick={() => onClick()}>{buttonText}</button>
+        <div className='primaryButtonArea'>
+            <button className='primaryButton' onClick={() => onClick()}>{buttonText}</button>
+        </div>
     );
 }
 
