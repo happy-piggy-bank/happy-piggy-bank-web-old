@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
 }
+
 .loginBoxArea {
     display: flex;
     flex-direction: column;
@@ -12,4 +13,14 @@
     background: whitesmoke;
     margin-bottom: 15px;
     padding: 20px;
+}
+
+.joinLinkText {
+    margin-top: 25px;
+}
+
+.joinLinkText > a {
+    font-weight: bold;
+    color: #A0522D;
+    text-decoration: none;
 }
