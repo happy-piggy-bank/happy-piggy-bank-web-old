@@ -20,8 +20,8 @@ const LoginScreen = () => {
                     <InputBar placeHolder={"아이디 (이메일 주소)"} />
                     <InputBar placeHolder={"비밀번호"} isPassword={true} />
                 </div>
-                <PrimaryButton buttonText={"저금 계속하기"} onClick={() => {}}/>
-                <PrimaryButton buttonText={"저금 새로 시작하기"} onClick={() => navigate('/join')}/>
+                <PrimaryButton buttonText={"계속하기"} onClick={() => {}}/>
+                <PrimaryButton buttonText={"새로 시작하기"} onClick={() => navigate('/join')}/>
             </div>
             <MainFooter/>
         </div>
