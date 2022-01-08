@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import "../../css/members/loginScreen.css";
@@ -10,6 +10,8 @@ import PrimaryButton from '../common/primaryButton';
 import InputBar from '../common/inputBar';
 
 const LoginScreen = () => {
+    const [userEmail, setEmail] = useState(null);
+    const [userPw, setPw] = useState(null);
     const navigate = useNavigate();
 
     return (
@@ -17,10 +19,10 @@ const LoginScreen = () => {
             <MainHeader/>
             <div className='loginBodyArea'>
                 <div className='loginBoxArea'>
-                    <InputBar placeHolder={"아이디 (이메일 주소)"} />
-                    <InputBar placeHolder={"비밀번호"} isPassword={true} />
+                    <InputBar placeHolder={"아이디 (이메일 주소)"} onChange={setEmail} />
+                    <InputBar placeHolder={"비밀번호"} isPassword={true} onChange={setPw} />
                 </div>
-                <PrimaryButton buttonText={"로그인"} onClick={() => {}}/>
+                <PrimaryButton buttonText={"로그인"} onClick={() => console.log({ userEmail, userPw })}/>
                 <div className="joinLinkText">
                     처음 오셨나요?&nbsp;
                     <a href="" onClick={() => navigate('/join')}>회원가입</a>
