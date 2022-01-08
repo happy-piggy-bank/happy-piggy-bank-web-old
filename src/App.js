@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import './css/app.css';
 
 import MainScreen from './components/mainScreen';
-import LoginScreen from './components/loginScreen';
-import JoinScreen from './components/joinScreen';
+import LoginScreen from './components/members/loginScreen';
+import JoinScreen from './components/members/joinScreen';
 
 function App() {
   return (

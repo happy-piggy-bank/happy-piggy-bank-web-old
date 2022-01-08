@@ -1,7 +1,7 @@
 import React from 'react';
 
-import MainHeader from './common/mainHeader';
-import MainFooter from './common/mainFooter';
+import MainHeader from '../common/mainHeader';
+import MainFooter from '../common/mainFooter';
 
 const LoginScreen = () => {
     return (
