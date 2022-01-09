@@ -1,0 +1,46 @@
+.createBankBodyArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createBankBoxArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    border-radius: 10px;
+    background: whitesmoke;
+    margin-bottom: 15px;
+    padding: 20px;
+}
+
+.createBankFileUploadArea {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.createBankFileUploadText {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.createBankFileUploadButton {
+    width: 100%;
+    padding: 10px;
+    border: #DEB887 dashed 2px;
+    border-radius: 30px;
+    font-family: NanumBarunpen, sans-serif;
+    font-size: 2.5vh;
+    color: #DEB887;
+    background: #fff;
+}
+
+.createBankFileUploadButton:hover {
+    border-color: #A0522D;
+    color: #A0522D;
+}
