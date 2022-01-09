@@ -11,12 +11,10 @@
     width: 100%;
     border-radius: 30px;
     border: #DEB887 solid 1px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     font-family: NanumBarunpen, sans-serif;
     font-size: 2vh;
+    resize: none;
 }
 
 .inputTextInputArea:hover {
