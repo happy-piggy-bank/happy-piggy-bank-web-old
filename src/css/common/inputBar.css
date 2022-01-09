@@ -18,9 +18,9 @@
 }
 
 .inputBarInputArea:hover {
-    border: #A0522D solid 1px;
+    border-color: #A0522D;
 }
 
 .inputBarInputArea:focus {
-    outline: #A0522D solid 1px;
+    outline-color: #A0522D;
 }
