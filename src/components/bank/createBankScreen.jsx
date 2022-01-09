@@ -41,7 +41,7 @@ const CreateBankScreen = () => {
                         </button>
                     </div>
                 </div>
-                <PrimaryButton buttonText={"저금하기"} onClick={() => console.log({ bankTitle, bankAmount, bankContents })}/>
+                <PrimaryButton buttonText={"저금하기"} onClick={() => {}}/>
             </div>
             <MainFooter/>
         </div>

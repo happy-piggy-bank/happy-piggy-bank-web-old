@@ -22,7 +22,7 @@ const LoginScreen = () => {
                     <InputBar placeHolder={"아이디 (이메일 주소)"} onChange={setEmail} />
                     <InputBar placeHolder={"비밀번호"} isPassword={true} onChange={setPw} />
                 </div>
-                <PrimaryButton buttonText={"로그인"} onClick={() => console.log({ userEmail, userPw })}/>
+                <PrimaryButton buttonText={"로그인"} onClick={() => {}}/>
                 <div className="joinLinkText">
                     처음 오셨나요?&nbsp;
                     <a href="" onClick={() => navigate('/join')}>회원가입</a>
