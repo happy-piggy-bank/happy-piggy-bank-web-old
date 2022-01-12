@@ -1,7 +1,4 @@
 import { React } from 'react';
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 import '../../css/bank/bankListScreen.css';
 
@@ -9,6 +6,7 @@ import MainHeader from '../common/mainHeader';
 import MainFooter from '../common/mainFooter';
 
 import NoBankList from './noBankList';
+import BankListComponent from './bankListComponent';
 
 const BankListScreen = () => {
     return (
@@ -16,7 +14,7 @@ const BankListScreen = () => {
             <MainHeader/>
             <div className='bankListBodyArea'>
                 <div className='bankListEntryArea'>
-                    <NoBankList/>
+                    <BankListComponent/>
                 </div>
             </div>
             <MainFooter/>

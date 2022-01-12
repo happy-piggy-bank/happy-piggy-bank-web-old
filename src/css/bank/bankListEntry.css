@@ -1,0 +1,23 @@
+.bankListEntryContainer {
+    flex: 1;
+    height: 300px;
+    margin-bottom: 30px;
+    border: #EBB9D2 solid 2.5px;
+    border-radius: 30px;
+    background-color: whitesmoke;
+}
+
+.bankListEntryHeadImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+    width: 50px;
+}
+
+.bankListEntryContentArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
