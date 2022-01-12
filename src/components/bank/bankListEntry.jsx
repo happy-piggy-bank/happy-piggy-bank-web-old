@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faCoins, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 import '../../css/bank/bankListEntry.css';
 
@@ -14,6 +14,10 @@ const BankListEntry = () => {
             <img className='bankListEntryHeadImg' src={entryHeaderImg} />
             <div className='bankListEntryContentArea'>
                     <img src={noImage} width='200px' />
+                    <div className='bankListEntryTextArea'>
+                        <p><FontAwesomeIcon icon={faCoins} />&nbsp;1,000</p>
+                        <p><FontAwesomeIcon icon={faCalendarAlt} />&nbsp;2022-01-12</p>
+                    </div>
             </div>
         </div>
     );
