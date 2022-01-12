@@ -41,7 +41,7 @@ const CreateBankScreen = () => {
                         </button>
                     </div>
                 </div>
-                <PrimaryButton buttonText={"저금하기"} onClick={() => {}}/>
+                <PrimaryButton buttonText={"새로운 추억 쌓기"} onClick={() => {}}/>
             </div>
             <MainFooter/>
         </div>
