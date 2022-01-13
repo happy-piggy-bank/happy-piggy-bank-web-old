@@ -6,9 +6,17 @@ import { faCoins, faCalendarAlt, faTimes } from '@fortawesome/free-solid-svg-ico
 import '../../css/bank/bankListEntry.css';
 
 import entryHeaderImg from '../../images/pig_illustration.png';
-import noImage from '../../images/no_image.gif';
+import piggyBankImg from '../../images/piggy_bank.png';
 
 const BankListEntry = () => {
+    const BankListEntryImage = () => {
+        return (
+            <div className='bankListEntryImage'>
+                <img src={piggyBankImg} width='100px' />
+            </div>
+        )
+    }
+
     return (
         <div className='bankListEntryContainer'>
             <img className='bankListEntryHeadImg' src={entryHeaderImg} />
@@ -16,7 +24,7 @@ const BankListEntry = () => {
                 <FontAwesomeIcon icon={faTimes} />
             </button>
             <div className='bankListEntryContentArea'>
-                    <img src={noImage} width='200px' />
+                    <BankListEntryImage/>
                     <div className='bankListEntryTextArea'>
                         <p><FontAwesomeIcon icon={faCoins} />&nbsp;1,000</p>
                         <p><FontAwesomeIcon icon={faCalendarAlt} />&nbsp;2022-01-12</p>
