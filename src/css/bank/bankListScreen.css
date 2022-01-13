@@ -5,3 +5,17 @@
     padding-left: 30px;
     padding-right: 30px;
 }
+
+.createBankButton {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    width: 70px;
+    height: 70px;
+    background: #DEB887;
+    border-style: none;
+    border-radius: 40px;
+    font-size: 5vh;
+    color: white;
+}
