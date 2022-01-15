@@ -118,3 +118,15 @@
   text-decoration: none;
   color: black;
 }
+
+.noBankListBodyArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noBankListContentArea {
+  width: 90%;
+  text-align: center;
+  font-size: 2.5vh;
+}

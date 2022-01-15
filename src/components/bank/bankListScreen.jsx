@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import "../../css/bank/bankListScreen.css";
+import noBankListImg from "../../images/no_bank_data.png";
 
 import MainHeader from "../common/mainHeader";
 import MainFooter from "../common/mainFooter";
 import PrimaryButton from "../common/primaryButton";
 import MyInfoButton from "../common/myInfoButton";
 
-// import NoBankList from "./noBankList";
 import BankListComponent from "./bankListComponent";
 
 const BankListScreen = () => {
@@ -42,9 +42,27 @@ const BankListScreen = () => {
     );
   };
 
-  return (
-    <div className="bankListScreenContainer">
-      <MainHeader />
+  const NoBankList = () => {
+    return (
+      <div className="noBankListComponentContainer">
+        <div className="noBankListBodyArea">
+          <div className="noBankListContentArea">
+            <img src={noBankListImg} width="60%" />
+            <p>&nbsp;</p>
+            <p>아직 우리에게 쌓인 추억이 없어요 :(</p>
+            <p>&nbsp;</p>
+          </div>
+          <PrimaryButton
+            buttonText={"새로운 추억 쌓기"}
+            onClick={() => navigate("/create")}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const BankList = () => {
+    return (
       <div className="bankListBodyArea">
         <div className="bankListEntryArea">
           <div className="bankListDescriptionArea">
@@ -60,6 +78,13 @@ const BankListScreen = () => {
           <BankListComponent />
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div className="bankListScreenContainer">
+      <MainHeader />
+      <BankList />
       <button className="createBankButton" onClick={() => navigate("/create")}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
