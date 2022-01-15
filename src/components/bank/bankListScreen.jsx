@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import "../../css/bank/bankListScreen.css";
 
@@ -13,18 +13,34 @@ import MyInfoButton from "../common/myInfoButton";
 // import NoBankList from "./noBankList";
 import BankListComponent from "./bankListComponent";
 
-const MyInfoPopup = () => {
-  return (
-    <div className="myInfoPopup">
-      <PrimaryButton buttonText={"내 정보 수정"} onClick={() => {}} />
-      <PrimaryButton buttonText={"로그아웃"} onClick={() => {}} />
-    </div>
-  );
-};
-
 const BankListScreen = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const navigate = useNavigate();
+
+  const MyInfoPopup = () => {
+    return (
+      <div className="myInfoPopup">
+        <div className="myInfoPopupInner">
+          <button className="myInfoPopupCloseButton">
+            <FontAwesomeIcon
+              icon={faTimes}
+              onClick={() => setPopupOpen(false)}
+            />
+          </button>
+          <PrimaryButton buttonText={"내 정보 수정"} onClick={() => {}} />
+          <PrimaryButton
+            buttonText={"로그아웃"}
+            onClick={() => navigate("/")}
+          />
+          <div className="myInfoPopupEmail">
+            <a href="mailto:dokdo2005@gmail.com?subject=[나의 행복한 돼지 저금통] 버그 제보 및 건의">
+              버그 제보 및 건의
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="bankListScreenContainer">
@@ -48,6 +64,7 @@ const BankListScreen = () => {
         <FontAwesomeIcon icon={faPlus} />
       </button>
       <MainFooter />
+      {isPopupOpen ? <MyInfoPopup /> : null}
     </div>
   );
 };
