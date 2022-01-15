@@ -1,0 +1,67 @@
+.bankDetailScreenContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bankDetailBodyArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  border-radius: 10px;
+  background: whitesmoke;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+
+.bankDetailTitleArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  height: 40px;
+  border-radius: 30px;
+  border: #deb887 solid 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bankDetailTitle {
+  display: flex;
+  flex: 8;
+  justify-content: flex-start;
+}
+
+.bankDetailImage {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  max-width: 90%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.bankDetailContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 90%;
+  min-height: 20px;
+  border-radius: 30px;
+  border: #deb887 solid 1px;
+  padding: 20px;
+}
+
+.bankDetailAmount {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+}
+
+.bankNotFoundContentArea {
+  width: 90%;
+  text-align: center;
+  font-size: 2.5vh;
+}
