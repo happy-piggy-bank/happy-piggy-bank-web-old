@@ -27,7 +27,10 @@ const BankListScreen = () => {
               onClick={() => setPopupOpen(false)}
             />
           </button>
-          <PrimaryButton buttonText={"내 정보 수정"} onClick={() => {}} />
+          <PrimaryButton
+            buttonText={"내 정보 수정"}
+            onClick={() => navigate("/myPage")}
+          />
           <PrimaryButton
             buttonText={"로그아웃"}
             onClick={() => navigate("/")}
