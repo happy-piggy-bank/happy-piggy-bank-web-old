@@ -85,10 +85,10 @@ const BankListScreen = () => {
     <div className="bankListScreenContainer">
       <MainHeader />
       <BankList />
+      <MainFooter />
       <button className="createBankButton" onClick={() => navigate("/create")}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
-      <MainFooter />
       {isPopupOpen ? <MyInfoPopup /> : null}
     </div>
   );
