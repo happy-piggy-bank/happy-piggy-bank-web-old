@@ -7,6 +7,7 @@ import LoginScreen from './components/members/loginScreen';
 import JoinScreen from './components/members/joinScreen';
 import CreateBankScreen from './components/bank/createBankScreen';
 import BankListScreen from './components/bank/bankListScreen';
+import BankDetailScreen from './components/bank/bankDetailScreen';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="join" element={<JoinScreen/>} />
           <Route path="create" element={<CreateBankScreen/>} />
           <Route path="bank" element={<BankListScreen/>} />
+          <Route path="bank/:bankId" element={<BankDetailScreen/>}/>
       </Routes>
     </div>
   );
