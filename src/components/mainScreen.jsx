@@ -10,6 +10,11 @@ import '../css/mainScreen.css';
 
 const MainScreen = () => {
     const [mainScreenRoute, setMainScreenRoute] = useState(null);
+    const [mainStats, setMainStats] = useState({
+        totalUserCount: 0,
+        totalBankCount: 0,
+        totalBankAmount: 0
+    })
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,9 +33,9 @@ const MainScreen = () => {
                 <div className='mainContentArea'>
                     <img src={piggyBankImg} width="60%" alt='돼지 저금통' />
                     <p>&nbsp;</p>
-                    <p>0명의 사람들이</p>
-                    <p>0개의 행복했던 순간과 함께</p>
-                    <p>0원을 저금하고 있어요</p>
+                    <p>{mainStats.totalUserCount}명의 사람들이</p>
+                    <p>{mainStats.totalBankCount}번의 행복했던 순간과 함께</p>
+                    <p>{mainStats.totalBankAmount}원의 행복을 저금하고 있어요!</p>
                     <p>&nbsp;</p>
                 </div>
                 <PrimaryButton buttonText="시작하기" onClick={() => navigate(mainScreenRoute)} />
