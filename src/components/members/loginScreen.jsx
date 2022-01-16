@@ -19,6 +19,11 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) navigate("/bank");
+  });
+
+  useEffect(() => {
     if (reqStatus === "success") {
       navigate("/bank");
     } else if (reqStatus === "error") {
