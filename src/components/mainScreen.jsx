@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { numberWithCommas } from "../features/utils";
+import { bankTotalStatsApi } from "../features/api/bankApi";
 
 import MainHeader from "./common/mainHeader";
 import MainFooter from "./common/mainFooter";
@@ -16,6 +18,14 @@ const MainScreen = () => {
     totalBankAmount: 0,
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const getStats = await bankTotalStatsApi();
+      setMainStats(getStats.data);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -35,7 +45,10 @@ const MainScreen = () => {
           <p>&nbsp;</p>
           <p>{mainStats.totalUserCount}명의 사람들이</p>
           <p>{mainStats.totalBankCount}번의 행복했던 순간과 함께</p>
-          <p>{mainStats.totalBankAmount}원의 행복을 저금하고 있어요!</p>
+          <p>
+            {numberWithCommas(mainStats.totalBankAmount)}원의 행복을 저금하고
+            있어요!
+          </p>
           <p>&nbsp;</p>
         </div>
         <PrimaryButton
