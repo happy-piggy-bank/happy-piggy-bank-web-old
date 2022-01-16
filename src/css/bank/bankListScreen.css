@@ -2,6 +2,10 @@
   .bankListDescLeft {
     font-size: 2.5vh;
   }
+
+  .bankListDescriptionArea {
+    width: 520px;
+  }
 }
 
 @media screen and (max-width: 599px) {
