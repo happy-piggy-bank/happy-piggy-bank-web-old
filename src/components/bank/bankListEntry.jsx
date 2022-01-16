@@ -6,19 +6,24 @@ import {
   faCalendarAlt,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { numberWithCommas } from "../../features/utils";
 
 import "../../css/bank/bankListEntry.css";
 
 import entryHeaderImg from "../../images/pig_illustration.png";
 import piggyBankImg from "../../images/piggy_bank.png";
 
-const BankListEntry = () => {
+const BankListEntry = ({ data }) => {
   const navigate = useNavigate();
 
   const BankListEntryImage = () => {
     return (
       <div className="bankListEntryImage">
-        <img src={piggyBankImg} width="100px" />
+        {data.contentsImg ? (
+          <img src={data.contentsImg} />
+        ) : (
+          <img src={piggyBankImg} width="100px" />
+        )}
       </div>
     );
   };
@@ -31,17 +36,17 @@ const BankListEntry = () => {
       </button>
       <div
         className="bankListEntryContentArea"
-        onClick={() => navigate("/bank/1")}
+        onClick={() => navigate(`/bank/${data.id}`)}
       >
         <BankListEntryImage />
         <div className="bankListEntryTextArea">
           <p>
             <FontAwesomeIcon icon={faCoins} />
-            &nbsp;1,000
+            &nbsp;{numberWithCommas(data.bankAmount)}
           </p>
           <p>
             <FontAwesomeIcon icon={faCalendarAlt} />
-            &nbsp;2022-01-12
+            &nbsp;{data.regDt.split("T")[0]}
           </p>
         </div>
       </div>

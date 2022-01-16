@@ -1,18 +1,17 @@
-import { React } from 'react';
+import { React } from "react";
 
-import '../../css/bank/bankListComponent.css';
+import "../../css/bank/bankListComponent.css";
 
-import BankListEntry from './bankListEntry';
+import BankListEntry from "./bankListEntry";
 
-const BankListComponent = () => {
-    return (
-        <div className='bankListComponentContainer'>
-            <BankListEntry/>
-            <BankListEntry/>
-            <BankListEntry/>
-            <BankListEntry/>
-        </div>
-    )
-}
+const BankListComponent = ({ listData }) => {
+  return (
+    <div className="bankListComponentContainer">
+      {listData.map((element) => (
+        <BankListEntry data={element} key={element.id} />
+      ))}
+    </div>
+  );
+};
 
 export default BankListComponent;

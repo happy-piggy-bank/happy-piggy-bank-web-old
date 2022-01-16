@@ -1,7 +1,13 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getThisYearBankList,
+  clearBankList,
+} from "../../features/slices/bankSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { numberWithCommas } from "../../features/utils";
 
 import "../../css/bank/bankListScreen.css";
 import noBankListImg from "../../images/no_bank_data.png";
@@ -15,7 +21,36 @@ import BankListComponent from "./bankListComponent";
 
 const BankListScreen = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const reqStatus = useSelector((state) => state.bank.status);
+  const reqError = useSelector((state) => state.bank.error);
+  const bankStats = useSelector((state) => state.bank.statistics);
+  const bankList = useSelector((state) => state.bank.data);
+  const isListEnd = useSelector((state) => state.bank.isListEnd);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      alert("로그인을 해주세요!");
+      navigate("/login");
+    } else {
+      dispatch(clearBankList());
+      dispatch(getThisYearBankList({ token: authToken, currentPage }));
+    }
+    return dispatch(clearBankList());
+  }, []);
+
+  useEffect(() => {
+    if (reqStatus === "error") {
+      if (reqError === "no_auth_token" || reqError === "invalid_token") {
+        localStorage.removeItem("authToken");
+        alert("로그인을 해주세요!");
+        navigate("/login");
+      }
+    }
+  }, [reqStatus, reqError, navigate]);
 
   const MyInfoPopup = () => {
     return (
@@ -50,6 +85,14 @@ const BankListScreen = () => {
       <div className="noBankListComponentContainer">
         <div className="noBankListBodyArea">
           <div className="noBankListContentArea">
+            <div className="bankListDescriptionArea">
+              <div className="bankListDescLeft">
+                <p>{localStorage.getItem("userName")}님 어서오세요!</p>
+              </div>
+              <div className="bankListDescRight">
+                <MyInfoButton onClick={() => setPopupOpen(true)} />
+              </div>
+            </div>
             <img src={noBankListImg} width="60%" />
             <p>&nbsp;</p>
             <p>아직 우리에게 쌓인 추억이 없어요 :(</p>
@@ -70,15 +113,20 @@ const BankListScreen = () => {
         <div className="bankListEntryArea">
           <div className="bankListDescriptionArea">
             <div className="bankListDescLeft">
-              <p>{new Date().getFullYear()}년의 김뷰엘님은</p>
-              <p>0번의 행복했던 순간과 함께</p>
-              <p>0원의 행복을 저금했어요!</p>
+              <p>
+                {new Date().getFullYear()}년의{" "}
+                {localStorage.getItem("userName")}님은
+              </p>
+              <p>{bankStats.totalCount}번의 행복했던 순간과 함께</p>
+              <p>
+                {numberWithCommas(bankStats.totalAmount)}원의 행복을 저금했어요!
+              </p>
             </div>
             <div className="bankListDescRight">
               <MyInfoButton onClick={() => setPopupOpen(true)} />
             </div>
           </div>
-          <BankListComponent />
+          <BankListComponent listData={bankList} />
         </div>
       </div>
     );
@@ -87,7 +135,7 @@ const BankListScreen = () => {
   return (
     <div className="bankListScreenContainer">
       <MainHeader />
-      <BankList />
+      {bankList.length > 0 ? <BankList data={bankList} /> : <NoBankList />}
       <MainFooter />
       <button className="createBankButton" onClick={() => navigate("/create")}>
         <FontAwesomeIcon icon={faPlus} />
