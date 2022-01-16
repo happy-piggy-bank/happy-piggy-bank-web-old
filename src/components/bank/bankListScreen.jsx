@@ -153,7 +153,11 @@ const BankListScreen = () => {
   return (
     <div className="bankListScreenContainer">
       <MainHeader />
-      {bankList.length > 0 ? <BankList data={bankList} /> : <NoBankList />}
+      {bankList.length > 0 ? (
+        <BankList data={bankList} />
+      ) : reqStatus === "loading" ? null : (
+        <NoBankList />
+      )}
       <MainFooter />
       <button className="createBankButton" onClick={() => navigate("/create")}>
         <FontAwesomeIcon icon={faPlus} />
