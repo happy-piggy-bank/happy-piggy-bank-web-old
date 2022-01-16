@@ -33,16 +33,23 @@
   justify-content: flex-start;
 }
 
+.bankDetailAmount {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+}
+
 .bankDetailImage {
   display: flex;
   justify-content: center;
   width: 90%;
   max-width: 90%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.bankDetailContent {
+.bankDetailContentArea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,10 +61,16 @@
   padding: 20px;
 }
 
-.bankDetailAmount {
-  display: flex;
-  flex: 2;
-  justify-content: flex-end;
+.bankDetailRegDt {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: right;
+}
+
+.bankDetailContent {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .bankNotFoundContentArea {
