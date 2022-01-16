@@ -36,7 +36,6 @@ const BankListScreen = () => {
       alert("로그인을 해주세요!");
       navigate("/login");
     } else {
-      dispatch(clearBankList());
       dispatch(getThisYearBankList({ token: authToken, currentPage }));
     }
     return dispatch(clearBankList());
