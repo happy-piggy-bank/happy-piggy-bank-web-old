@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../../features/slices/memberSlice";
+import { userLoginApi } from "../../features/api/userApi";
 
 import "../../css/members/loginScreen.css";
 
@@ -14,30 +13,30 @@ import InputBar from "../common/inputBar";
 const LoginScreen = () => {
   const [userEmail, setEmail] = useState(null);
   const [userPw, setPw] = useState(null);
-  const reqStatus = useSelector((state) => state.member.status);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) navigate("/bank");
-  });
+  }, [navigate]);
 
-  useEffect(() => {
-    if (reqStatus === "success") {
-      navigate("/bank");
-    } else if (reqStatus === "error") {
-      alert("로그인에 실패했습니다.");
-    }
-  }, [reqStatus, navigate]);
-
-  const getUserLogin = () => {
+  const getUserLogin = async () => {
     if (!userEmail) {
       alert("아이디를 입력해주세요");
     } else if (!userPw) {
       alert("비밀번호를 입력해주세요");
     } else {
-      dispatch(userLogin({ userEmail, userPw }));
+      const loginResult = await userLoginApi({ userEmail, userPw });
+      if ((loginResult.result = "login_success")) {
+        const { userNum, userEmail, userName, token } = loginResult.data;
+        localStorage.setItem("userNum", userNum);
+        localStorage.setItem("userEmail", userEmail);
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("authToken", token);
+        navigate("/bank");
+      } else {
+        alert("로그인에 실패했습니다");
+      }
     }
   };
 
