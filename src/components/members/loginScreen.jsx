@@ -18,7 +18,7 @@ const LoginScreen = () => {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) navigate("/bank");
-  }, [navigate]);
+  });
 
   const getUserLogin = async () => {
     if (!userEmail) {
@@ -27,7 +27,7 @@ const LoginScreen = () => {
       alert("비밀번호를 입력해주세요");
     } else {
       const loginResult = await userLoginApi({ userEmail, userPw });
-      if ((loginResult.result = "login_success")) {
+      if (loginResult.result === "login_success") {
         const { userNum, userEmail, userName, token } = loginResult.data;
         localStorage.setItem("userNum", userNum);
         localStorage.setItem("userEmail", userEmail);
