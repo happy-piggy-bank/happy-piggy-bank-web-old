@@ -1,16 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getThisYearBankListApi } from '../api/bankApi';
+import { getThisYearBankListApi, deleteBankEntryApi } from '../api/bankApi';
 
 export const getThisYearBankList = createAsyncThunk("bank/getThisYearList", async ({ token, currentPage }) => {
     const response = await getThisYearBankListApi({ token, currentPage });
     return response;
-})
+});
+
+export const deleteBankEntry = createAsyncThunk("bank/deleteEntry", async ({ token, bankId }) => {
+    const response = await deleteBankEntryApi({ token, bankId });
+    return response;
+});
  
 export const bankSlice = createSlice({
     name: 'bank',
     initialState: {
         status: null,
         error: null,
+        deleteStatus: null,
+        deleteError: null,
         statistics: {},
         data: [],
         isListEnd: false
@@ -39,6 +46,13 @@ export const bankSlice = createSlice({
         [getThisYearBankList.rejected]: (state, { payload }) => {
             state.status = "error";
             state.error = payload.result;
+        },
+        [deleteBankEntry.fulfilled]: (state) => {
+            state.deleteStatus = "success";
+        },
+        [deleteBankEntry.rejected]: (state, { payload }) => {
+            state.deleteStatus = "error";
+            state.deleteError = payload.result;
         }
     }
 
