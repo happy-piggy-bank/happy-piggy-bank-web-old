@@ -52,6 +52,14 @@ const BankListScreen = () => {
     }
   }, [reqStatus, reqError, navigate]);
 
+  const getMoreList = async () => {
+    if (!isListEnd) {
+      const authToken = localStorage.getItem("authToken");
+      setCurrentPage(currentPage + 1);
+      dispatch(getThisYearBankList({ token: authToken, currentPage }));
+    }
+  };
+
   const MyInfoPopup = () => {
     return (
       <div className="myInfoPopup">
@@ -128,6 +136,17 @@ const BankListScreen = () => {
           </div>
           <BankListComponent listData={bankList} />
         </div>
+        {bankList.length >= 10 && !isListEnd ? (
+          <buton
+            className="showMoreBankListButton"
+            onClick={() => getMoreList()}
+          >
+            <p>
+              <FontAwesomeIcon icon={faPlus} size="2x" />
+            </p>
+            <p>목록 더 가져오기</p>
+          </buton>
+        ) : null}
       </div>
     );
   };

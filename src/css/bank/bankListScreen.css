@@ -54,6 +54,22 @@
   background: #daa06d;
 }
 
+.showMoreBankListButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  border: #deb887 dashed 2px;
+  border-radius: 30px;
+  font-family: NanumBarunpen, sans-serif;
+  font-size: 2.5vh;
+  color: #deb887;
+  background: #fff;
+}
+
 .createBankButton {
   position: fixed;
   right: 0;
