@@ -36,7 +36,7 @@ const BankListEntry = ({ data }) => {
     if (reqStatus === "error") {
       alert("삭제에 실패하였습니다");
     }
-  }, [reqStatus, dispatch]);
+  }, [reqStatus]);
 
   const getDeleteBank = () => {
     if (window.confirm("정말로 삭제하시겠어요?")) {
