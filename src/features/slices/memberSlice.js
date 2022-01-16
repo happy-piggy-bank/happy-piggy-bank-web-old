@@ -1,19 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { userLoginApi } from "../api/userApi";
+
+export const userLogin = createAsyncThunk("members/userLogin", async ({ userEmail, userPw }) => {
+    const response = await userLoginApi({ userEmail, userPw });
+    return response;
+});
 
 export const memberSlice = createSlice({
     name: 'member',
     initialState: {
-        value: {}
+        status: null,
+        error: null,
+        data: {}
     },
     reducers: {
-        getMemberInfo: (state, action) => {
-            Object.assign(state.value, action.payload);
-        },
         clearMemberInfo: (state) => {
-            state.value = {};
+            state.data = {};
+        }
+    },
+    extraReducers: {
+        [userLogin.fulfilled]: (state, { payload }) => {
+            state.status = "success";
+            Object.assign(state.data, {
+                userNum: payload.data.userNum,
+                userEmail: payload.data.userEmail,
+                userName: payload.data.userName
+            });
+            localStorage.setItem('authToken', payload.data.token);
+        },
+        [userLogin.rejected]: (state, { payload }) => {
+            state.status = "error";
+            state.error = payload.result;
         }
     }
 });
 
-export const { getMemberInfo, clearMemberInfo } = memberSlice.actions;
+export const { clearMemberInfo } = memberSlice.actions;
 export default memberSlice.reducer;
