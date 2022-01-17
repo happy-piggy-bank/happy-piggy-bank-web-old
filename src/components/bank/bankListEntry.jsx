@@ -20,18 +20,6 @@ const BankListEntry = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const BankListEntryImage = () => {
-    return (
-      <div className="bankListEntryImage">
-        {data.contentsImg ? (
-          <img src={data.contentsImg} />
-        ) : (
-          <img src={piggyBankImg} width="100px" />
-        )}
-      </div>
-    );
-  };
-
   useEffect(() => {
     if (reqStatus === "error") {
       alert("삭제에 실패하였습니다");
@@ -65,7 +53,13 @@ const BankListEntry = ({ data }) => {
         className="bankListEntryContentArea"
         onClick={() => navigate(`/bank/${data.id}`)}
       >
-        <BankListEntryImage />
+        <div className="bankListEntryImage">
+          {data.contentsImg ? (
+            <img src={data.contentsImg} />
+          ) : (
+            <img src={piggyBankImg} width="100px" />
+          )}
+        </div>
         <div className="bankListEntryTextArea">
           <p>
             <FontAwesomeIcon icon={faCoins} />
