@@ -1,7 +1,8 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { createBankApi } from "../../features/api/bankApi";
 
 import "../../css/bank/createBankScreen.css";
 
@@ -19,6 +20,51 @@ const CreateBankScreen = () => {
   const [file, setFile] = useState(null);
   const inputFile = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      alert("로그인을 해주세요!");
+      navigate("/login");
+    }
+  }, []);
+
+  const createBank = async () => {
+    if (!bankTitle) {
+      alert("제목을 입력해주세요");
+    } else if (!bankContents) {
+      alert("내용을 입력해주세요");
+    } else if (!bankAmount) {
+      alert("저금액을 입력해주세요");
+    } else {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
+        alert("로그인을 해주세요!");
+        navigate("/login");
+      } else {
+        const createResult = await createBankApi({
+          token: authToken,
+          bankTitle,
+          bankContents,
+          bankAmount,
+          file,
+        });
+        if (createResult.result === "bank_create_success") {
+          alert("등록에 성공하였습니다");
+          navigate("/bank");
+        } else if (
+          createResult.result === "no_auth_token" ||
+          createResult.result === "invalid_token"
+        ) {
+          localStorage.removeItem("authToken");
+          alert("로그인을 해주세요!");
+          navigate("/login");
+        } else {
+          alert("등록에 실패하였습니다");
+        }
+      }
+    }
+  };
 
   return (
     <div className="createBankScreenContainer">
@@ -54,7 +100,10 @@ const CreateBankScreen = () => {
             </button>
           </div>
         </div>
-        <PrimaryButton buttonText={"새로운 추억 쌓기"} onClick={() => {}} />
+        <PrimaryButton
+          buttonText={"새로운 추억 쌓기"}
+          onClick={() => createBank()}
+        />
         <PrimaryButton
           buttonText={"목록으로 돌아가기"}
           onClick={() => navigate("/bank")}
