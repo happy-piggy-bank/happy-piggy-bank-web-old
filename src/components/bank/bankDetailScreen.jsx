@@ -89,8 +89,14 @@ const BankDetailScreen = () => {
           <div className="bankDetailTitleArea">
             <div className="bankDetailTitle">{bankDetail.bankTitle}</div>
             <div className="bankDetailAmount">
-              <FontAwesomeIcon icon={faCoins} />
-              &nbsp;{numberWithCommas(bankDetail.bankAmount)}
+              <p>
+                <FontAwesomeIcon icon={faCoins} />
+                &nbsp;{numberWithCommas(bankDetail.bankAmount)}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faCalendarAlt} />
+                &nbsp;{bankDetail.regDt.split("T")[0]}
+              </p>
             </div>
           </div>
           {bankDetail.contentsImg ? (
@@ -101,10 +107,6 @@ const BankDetailScreen = () => {
             <div className="bankDetailNoImage" />
           )}
           <div className="bankDetailContentArea">
-            <div className="bankDetailRegDt">
-              <FontAwesomeIcon icon={faCalendarAlt} />
-              &nbsp;{bankDetail.regDt.split("T")[0]}
-            </div>
             <div className="bankDetailContent">
               {bankDetail.bankContents.split("\n").map((value) => {
                 return (
