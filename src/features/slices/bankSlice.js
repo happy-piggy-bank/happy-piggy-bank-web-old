@@ -32,27 +32,29 @@ export const bankSlice = createSlice({
             state.status = "loading"
         },
         [getThisYearBankList.fulfilled]: (state, { payload }) => {
-            state.status = "success";
-            Object.assign(state.statistics, {
-                totalCount: payload.data.totalCount,
-                totalAmount: payload.data.totalAmount
-            });
-            if (payload.data.bankList) {
-                payload.data.bankList.map((element) => state.data.push(element));
+            if (payload.result === "success") {
+                state.status = "success";
+                Object.assign(state.statistics, {
+                    totalCount: payload.data.totalCount,
+                    totalAmount: payload.data.totalAmount
+                });
+                if (payload.data.bankList) {
+                    payload.data.bankList.map((element) => state.data.push(element));
+                } else {
+                    state.isListEnd = true;
+                }
             } else {
-                state.isListEnd = true;
+                state.status = "error";
+                state.error = payload.result;
             }
         },
-        [getThisYearBankList.rejected]: (state, { payload }) => {
-            state.status = "error";
-            state.error = payload.result;
-        },
-        [deleteBankEntry.fulfilled]: (state) => {
-            state.deleteStatus = "success";
-        },
-        [deleteBankEntry.rejected]: (state, { payload }) => {
-            state.deleteStatus = "error";
-            state.deleteError = payload.result;
+        [deleteBankEntry.fulfilled]: (state, { payload }) => {
+            if (payload.result === "bank_delete_success") {
+                state.deleteStatus = "success";
+            } else {
+                state.deleteStatus = "error";
+                state.deleteError = payload.result;
+            }
         }
     }
 
