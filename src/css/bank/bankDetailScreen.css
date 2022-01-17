@@ -44,8 +44,10 @@
   justify-content: center;
   width: 90%;
   padding: 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  border: #deb887 solid 1px;
 }
 
 .bankDetailImage > img {
