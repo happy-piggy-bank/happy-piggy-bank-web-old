@@ -34,7 +34,7 @@ const CreateBankScreen = () => {
       alert("제목을 입력해주세요");
     } else if (!bankContents) {
       alert("내용을 입력해주세요");
-    } else if (!bankAmount) {
+    } else if (!bankAmount || bankAmount == 0) {
       alert("저금액을 입력해주세요");
     } else {
       const authToken = localStorage.getItem("authToken");
