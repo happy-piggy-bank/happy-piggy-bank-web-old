@@ -40,6 +40,15 @@ const BankListEntry = ({ data }) => {
     }
   };
 
+  const goToDetailPage = () => {
+    const getThisMonth = new Date().getMonth();
+    if (getThisMonth < 12) {
+      alert("연말에 열어볼 수 있어요!");
+    } else {
+      navigate(`/bank/${data.id}`);
+    }
+  };
+
   return (
     <div className="bankListEntryContainer">
       <img className="bankListEntryHeadImg" src={entryHeaderImg} />
@@ -51,7 +60,7 @@ const BankListEntry = ({ data }) => {
       </button>
       <div
         className="bankListEntryContentArea"
-        onClick={() => navigate(`/bank/${data.id}`)}
+        onClick={() => goToDetailPage()}
       >
         <div className="bankListEntryImage">
           {data.contentsImg ? (
