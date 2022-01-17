@@ -88,15 +88,15 @@ const BankDetailScreen = () => {
         <div className="bankDetailBodyArea">
           <div className="bankDetailTitleArea">
             <div className="bankDetailTitle">{bankDetail.bankTitle}</div>
-            <div className="bankDetailAmount">
-              <p>
-                <FontAwesomeIcon icon={faCoins} />
-                &nbsp;{numberWithCommas(bankDetail.bankAmount)}
-              </p>
-              <p>
+            <div className="bankDetailTitleBottom">
+              <div className="bankDetailRegDt">
                 <FontAwesomeIcon icon={faCalendarAlt} />
                 &nbsp;{bankDetail.regDt.split("T")[0]}
-              </p>
+              </div>
+              <div className="bankDetailAmount">
+                <FontAwesomeIcon icon={faCoins} />
+                &nbsp;{numberWithCommas(bankDetail.bankAmount)}
+              </div>
             </div>
           </div>
           {bankDetail.contentsImg ? (
