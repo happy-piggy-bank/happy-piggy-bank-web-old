@@ -78,11 +78,11 @@ const BankListScreen = () => {
     return (
       <div className="myInfoPopup">
         <div className="myInfoPopupInner">
-          <button className="myInfoPopupCloseButton">
-            <FontAwesomeIcon
-              icon={faTimes}
-              onClick={() => setPopupOpen(false)}
-            />
+          <button
+            className="myInfoPopupCloseButton"
+            onClick={() => setPopupOpen(false)}
+          >
+            <FontAwesomeIcon icon={faTimes} />
           </button>
           <PrimaryButton
             buttonText={"내 정보 수정"}
