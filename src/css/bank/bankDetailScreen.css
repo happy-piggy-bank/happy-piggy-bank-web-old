@@ -43,6 +43,7 @@
 .bankDetailImage {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 90%;
   padding: 20px;
   margin-top: 10px;
