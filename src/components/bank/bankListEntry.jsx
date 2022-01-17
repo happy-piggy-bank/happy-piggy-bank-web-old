@@ -43,7 +43,7 @@ const BankListEntry = ({ data }) => {
   const goToDetailPage = () => {
     const getThisMonth = new Date().getMonth();
     if (getThisMonth < 12) {
-      alert("연말에 열어볼 수 있어요!");
+      alert("연말에 열어 볼 수 있어요!");
     } else {
       navigate(`/bank/${data.id}`);
     }
