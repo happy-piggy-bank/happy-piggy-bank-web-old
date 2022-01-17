@@ -112,7 +112,16 @@ const BankDetailScreen = () => {
               <FontAwesomeIcon icon={faCalendarAlt} />
               &nbsp;{bankDetail.regDt.split("T")[0]}
             </div>
-            <div className="bankDetailContent">{bankDetail.bankContents}</div>
+            <div className="bankDetailContent">
+              {bankDetail.bankContents.split("\n").map((value) => {
+                return (
+                  <>
+                    {value}
+                    <br />
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
         <PrimaryButton
