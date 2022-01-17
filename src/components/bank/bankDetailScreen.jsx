@@ -55,27 +55,29 @@ const BankDetailScreen = () => {
   }, []);
 
   const deleteBankEntry = async () => {
-    const authToken = localStorage.getItem("authToken");
-    if (!authToken) {
-      alert("로그인을 해주세요!");
-      navigate("/login");
-    } else {
-      const fetchResult = await deleteBankEntryApi({
-        token: authToken,
-        bankId,
-      });
-      if (fetchResult.result === "bank_delete_success") {
-        alert("삭제가 완료되었습니다");
-        navigate("/bank");
-      } else if (
-        fetchResult.result === "no_auth_token" ||
-        fetchResult.result === "invalid_token"
-      ) {
-        localStorage.removeItem("authToken");
+    if (window.confirm("정말로 삭제하시겠어요?")) {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
         alert("로그인을 해주세요!");
         navigate("/login");
       } else {
-        alert("삭제에 실패했습니다");
+        const fetchResult = await deleteBankEntryApi({
+          token: authToken,
+          bankId,
+        });
+        if (fetchResult.result === "bank_delete_success") {
+          alert("삭제가 완료되었습니다");
+          navigate("/bank");
+        } else if (
+          fetchResult.result === "no_auth_token" ||
+          fetchResult.result === "invalid_token"
+        ) {
+          localStorage.removeItem("authToken");
+          alert("로그인을 해주세요!");
+          navigate("/login");
+        } else {
+          alert("삭제에 실패했습니다");
+        }
       }
     }
   };
