@@ -96,13 +96,7 @@ const BankDetailScreen = () => {
           </div>
           {bankDetail.contentsImg ? (
             <div className="bankDetailImage">
-              <a
-                href={bankDetail.contentsImg}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={bankDetail.contentsImg} />
-              </a>
+              <img src={bankDetail.contentsImg} />
             </div>
           ) : (
             <div className="bankDetailNoImage" />
