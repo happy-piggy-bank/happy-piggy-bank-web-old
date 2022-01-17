@@ -100,10 +100,7 @@ const CreateBankScreen = () => {
             </button>
           </div>
         </div>
-        <PrimaryButton
-          buttonText={"새로운 추억 쌓기"}
-          onClick={() => createBank()}
-        />
+        <PrimaryButton buttonText={"저금하기"} onClick={() => createBank()} />
         <PrimaryButton
           buttonText={"목록으로 돌아가기"}
           onClick={() => navigate("/bank")}
