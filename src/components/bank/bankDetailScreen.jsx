@@ -1,9 +1,10 @@
-import { React } from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { getBankDetailApi } from "../../features/api/bankApi";
+import { numberWithCommas } from "../../features/utils";
 
-import bankNotFoundImg from "../../images/no_bank_data.png";
 import "../../css/bank/bankDetailScreen.css";
 
 import MainHeader from "../common/mainHeader";
@@ -12,63 +13,89 @@ import MainFooter from "../common/mainFooter";
 import PrimaryButton from "../common/primaryButton";
 
 const BankDetailScreen = () => {
+  const [bankDetail, setBankDetail] = useState(null);
   const navigate = useNavigate();
+  const { bankId } = useParams();
 
-  const BankNotFound = () => {
-    return (
-      <div className="bankNotFoundContentArea">
-        <img src={bankNotFoundImg} width="60%" />
-        <p>&nbsp;</p>
-        <p>존재하지 않는 추억이에요 :(</p>
-        <p>&nbsp;</p>
-      </div>
-    );
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
+        alert("로그인을 해주세요!");
+        navigate("/login");
+      } else {
+        const fetchResult = await getBankDetailApi({
+          token: authToken,
+          bankId,
+        });
+        if (fetchResult.result === "success") {
+          setBankDetail(fetchResult.data);
+        } else {
+          if (fetchResult.result === "record_not_found") {
+            alert("해당 내역을 찾을 수 없습니다");
+            navigate("/bank");
+          } else if (fetchResult.result === "bank_is_not_mine") {
+            alert("다른 사람의 내역은 열어볼 수 없어요!");
+            navigate("/");
+          } else if (fetchResult.result === "not_yet_open") {
+            alert("연말에 열어 볼 수 있어요!");
+            navigate("/bank");
+          } else if (
+            fetchResult.result === "no_auth_token" ||
+            fetchResult.result === "invalid_token"
+          ) {
+            localStorage.removeItem("authToken");
+            alert("로그인을 해주세요!");
+            navigate("/login");
+          }
+        }
+      }
+    };
+    fetchData();
+  }, []);
 
-  const BankBody = () => {
+  const BankDetailBody = () => {
     return (
-      <div className="bankDetailBodyArea">
-        <div className="bankDetailTitleArea">
-          <div className="bankDetailTitle">제목</div>
-          <div className="bankDetailAmount">
-            <FontAwesomeIcon icon={faCoins} />
-            &nbsp;1,000
+      <>
+        <div className="bankDetailBodyArea">
+          <div className="bankDetailTitleArea">
+            <div className="bankDetailTitle">{bankDetail.bankTitle}</div>
+            <div className="bankDetailAmount">
+              <FontAwesomeIcon icon={faCoins} />
+              &nbsp;{numberWithCommas(bankDetail.bankAmount)}
+            </div>
+          </div>
+          {bankDetail.contentsImg ? (
+            <div className="bankDetailImage">
+              <img src={bankDetail.contentsImg} />
+            </div>
+          ) : (
+            <div className="bankDetailNoImage" />
+          )}
+          <div className="bankDetailContentArea">
+            <div className="bankDetailRegDt">
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              &nbsp;{bankDetail.regDt.split("T")[0]}
+            </div>
+            <div className="bankDetailContent">{bankDetail.bankContents}</div>
           </div>
         </div>
-        <div className="bankDetailImage">이미지</div>
-        <div className="bankDetailContentArea">
-          <div className="bankDetailRegDt">
-            <FontAwesomeIcon icon={faCalendarAlt} />
-            &nbsp;2021-01-17
-          </div>
-          <div className="bankDetailContent">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </div>
-        </div>
-      </div>
+        <PrimaryButton
+          buttonText={"목록으로 돌아가기"}
+          onClick={() => navigate("/bank")}
+        />
+        <PrimaryButton
+          buttonText={"삭제하기"}
+          onClick={() => navigate("/bank")}
+        />
+      </>
     );
   };
 
   return (
     <div className="bankDetailScreenContainer">
       <MainHeader />
-      <BankBody />
-      <PrimaryButton
-        buttonText={"목록으로 돌아가기"}
-        onClick={() => navigate("/bank")}
-      />
-      <PrimaryButton
-        buttonText={"삭제하기"}
-        onClick={() => navigate("/bank")}
-      />
+      {bankDetail ? <BankDetailBody /> : null}
       <MainFooter />
     </div>
   );
