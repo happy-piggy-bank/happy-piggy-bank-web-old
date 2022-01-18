@@ -20,6 +20,19 @@ const LoginScreen = () => {
     if (authToken) navigate("/bank");
   });
 
+  useEffect(() => {
+    const keyPressListener = async (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        await getUserLogin();
+      }
+    };
+    document.addEventListener("keydown", keyPressListener);
+    return () => {
+      document.removeEventListener("keydown", keyPressListener);
+    };
+  });
+
   const getUserLogin = async () => {
     if (!userEmail) {
       alert("아이디를 입력해주세요");
