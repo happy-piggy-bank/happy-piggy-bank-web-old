@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userUpdateApi } from "../../features/api/userApi";
+import { userUpdateApi, userLeaveApi } from "../../features/api/userApi";
 
 import "../../css/members/myPageScreen.css";
 
@@ -72,6 +72,32 @@ const MyPageScreen = () => {
     }
   };
 
+  const getUserLeave = async () => {
+    if (window.confirm("정말로 탈퇴하시겠어요?")) {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
+        alert("로그인을 해주세요!");
+        navigate("/login");
+      } else {
+        const leaveResult = await userLeaveApi({ token: authToken });
+        if (leaveResult.result === "user_leave_success") {
+          localStorage.removeItem("authToken");
+          alert("회원 탈퇴가 완료되었습니다");
+          navigate("/");
+        } else if (
+          leaveResult.result === "no_auth_token" ||
+          leaveResult.result === "invalid_token"
+        ) {
+          localStorage.removeItem("authToken");
+          alert("로그인을 해주세요!");
+          navigate("/login");
+        } else {
+          alert("회원 탈퇴에 실패하였습니다");
+        }
+      }
+    }
+  };
+
   return (
     <div className="myPageContainer">
       <MainHeader />
@@ -111,7 +137,9 @@ const MyPageScreen = () => {
           buttonText={"돌아가기"}
           onClick={() => navigate("/bank")}
         />
-        <div className="memberLeave">회원 탈퇴</div>
+        <div className="memberLeave" onClick={() => getUserLeave()}>
+          회원 탈퇴
+        </div>
       </div>
       <MainFooter />
     </div>

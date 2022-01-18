@@ -1,4 +1,4 @@
-import { loginUri, joinUri, logoutUri, myInfoUri } from './apiRouteList';
+import { loginUri, joinUri, logoutUri, myInfoUri, leaveUri } from './apiRouteList';
 const axios = require('axios').default;
 
 export const userLoginApi = async ({ userEmail, userPw }) => {
@@ -33,6 +33,17 @@ export const userLogoutApi = async ({ token }) => {
 export const userUpdateApi = async ({ token, userPw }) => {
     try {
         const result = await axios.put(myInfoUri, { userPw }, {
+            headers: { token }
+        });
+        return result.data;
+    } catch (err) {
+        return err.response.data;
+    }
+}
+
+export const userLeaveApi = async ({ token }) => {
+    try {
+        const result = await axios.delete(leaveUri, {
             headers: { token }
         });
         return result.data;
