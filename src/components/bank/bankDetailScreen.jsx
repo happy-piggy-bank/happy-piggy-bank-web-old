@@ -40,6 +40,9 @@ const BankDetailScreen = () => {
           } else if (fetchResult.result === "bank_is_not_mine") {
             alert("다른 사람의 내역은 열어볼 수 없어요!");
             navigate("/");
+          } else if (fetchResult.result === "not_yet_open") {
+            alert("연말에 열어 볼 수 있어요!");
+            navigate("/bank");
           } else if (
             fetchResult.result === "no_auth_token" ||
             fetchResult.result === "invalid_token"
