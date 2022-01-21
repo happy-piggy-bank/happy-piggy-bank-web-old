@@ -24,7 +24,6 @@ const BankDetailScreen = () => {
     const fetchData = async () => {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         const fetchResult = await getBankDetailApi({
@@ -48,7 +47,6 @@ const BankDetailScreen = () => {
             fetchResult.result === "invalid_token"
           ) {
             localStorage.removeItem("authToken");
-            alert("로그인을 해주세요!");
             navigate("/login");
           }
         }
@@ -61,7 +59,6 @@ const BankDetailScreen = () => {
     if (window.confirm("정말로 삭제하시겠어요?")) {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         const fetchResult = await deleteBankEntryApi({
@@ -76,7 +73,6 @@ const BankDetailScreen = () => {
           fetchResult.result === "invalid_token"
         ) {
           localStorage.removeItem("authToken");
-          alert("로그인을 해주세요!");
           navigate("/login");
         } else {
           alert("삭제에 실패했습니다");

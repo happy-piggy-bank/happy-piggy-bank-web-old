@@ -34,7 +34,6 @@ const BankListScreen = () => {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
-      alert("로그인을 해주세요!");
       navigate("/login");
     } else {
       dispatch(getThisYearBankList({ token: authToken, currentPage }));
@@ -46,7 +45,6 @@ const BankListScreen = () => {
     if (reqStatus === "error") {
       if (reqError === "no_auth_token" || reqError === "invalid_token") {
         localStorage.removeItem("authToken");
-        alert("로그인을 해주세요!");
         navigate("/login");
       }
     }

@@ -18,7 +18,6 @@ const MyPageScreen = () => {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
-      alert("로그인을 해주세요!");
       navigate("/login");
     }
   });
@@ -46,7 +45,6 @@ const MyPageScreen = () => {
     } else {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         const updateResult = await userUpdateApi({
@@ -64,7 +62,6 @@ const MyPageScreen = () => {
             updateResult.result === "invalid_token"
           ) {
             localStorage.removeItem("authToken");
-            alert("로그인을 해주세요!");
             navigate("/login");
           }
         }
@@ -76,7 +73,6 @@ const MyPageScreen = () => {
     if (window.confirm("정말로 탈퇴하시겠어요?")) {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         const leaveResult = await userLeaveApi({ token: authToken });
@@ -89,7 +85,6 @@ const MyPageScreen = () => {
           leaveResult.result === "invalid_token"
         ) {
           localStorage.removeItem("authToken");
-          alert("로그인을 해주세요!");
           navigate("/login");
         } else {
           alert("회원 탈퇴에 실패하였습니다");

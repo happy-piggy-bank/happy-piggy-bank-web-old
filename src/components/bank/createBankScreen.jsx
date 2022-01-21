@@ -24,7 +24,6 @@ const CreateBankScreen = () => {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
-      alert("로그인을 해주세요!");
       navigate("/login");
     }
   }, []);
@@ -39,7 +38,6 @@ const CreateBankScreen = () => {
     } else {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         const createResult = await createBankApi({
@@ -57,7 +55,6 @@ const CreateBankScreen = () => {
           createResult.result === "invalid_token"
         ) {
           localStorage.removeItem("authToken");
-          alert("로그인을 해주세요!");
           navigate("/login");
         } else {
           alert("등록에 실패하였습니다");
