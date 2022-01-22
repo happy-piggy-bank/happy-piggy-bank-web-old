@@ -4,7 +4,7 @@ import { userLogoutApi } from "../../features/api/userApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import PrimaryButton from "../common/primaryButton";
+import PrimaryButton from "./primaryButton";
 
 const MyInfoPopup = ({ setPopupOpen }) => {
   const navigate = useNavigate();

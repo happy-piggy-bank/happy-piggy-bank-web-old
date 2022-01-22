@@ -16,7 +16,7 @@ import MainHeader from "../common/mainHeader";
 import MainFooter from "../common/mainFooter";
 import PrimaryButton from "../common/primaryButton";
 import MyInfoButton from "../common/myInfoButton";
-import MyInfoPopup from "./myInfoPopup";
+import MyInfoPopup from "../common/myInfoPopup";
 
 import BankListComponent from "./bankListComponent";
 
