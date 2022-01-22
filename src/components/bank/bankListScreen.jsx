@@ -5,9 +5,8 @@ import {
   getThisYearBankList,
   clearBankList,
 } from "../../features/slices/bankSlice";
-import { userLogoutApi } from "../../features/api/userApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { numberWithCommas } from "../../features/utils";
 
 import "../../css/bank/bankListScreen.css";
@@ -17,6 +16,7 @@ import MainHeader from "../common/mainHeader";
 import MainFooter from "../common/mainFooter";
 import PrimaryButton from "../common/primaryButton";
 import MyInfoButton from "../common/myInfoButton";
+import MyInfoPopup from "./myInfoPopup";
 
 import BankListComponent from "./bankListComponent";
 
@@ -56,45 +56,6 @@ const BankListScreen = () => {
       setCurrentPage(currentPage + 1);
       dispatch(getThisYearBankList({ token: authToken, currentPage }));
     }
-  };
-
-  const userLogout = async () => {
-    const authToken = localStorage.getItem("authToken");
-    const logoutResult = await userLogoutApi({ token: authToken });
-    if (logoutResult.result === "logout_success") {
-      localStorage.removeItem("userNum");
-      localStorage.removeItem("userEmail");
-      localStorage.removeItem("userName");
-      localStorage.removeItem("authToken");
-      navigate("/");
-    } else {
-      alert("로그아웃 실패");
-    }
-  };
-
-  const MyInfoPopup = () => {
-    return (
-      <div className="myInfoPopup">
-        <div className="myInfoPopupInner">
-          <button
-            className="myInfoPopupCloseButton"
-            onClick={() => setPopupOpen(false)}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
-          <PrimaryButton
-            buttonText={"내 정보 수정"}
-            onClick={() => navigate("/myPage")}
-          />
-          <PrimaryButton buttonText={"로그아웃"} onClick={() => userLogout()} />
-          <div className="myInfoPopupEmail">
-            <a href="mailto:dokdo2005@gmail.com?subject=[나의 행복한 돼지 저금통] 버그 제보 및 건의">
-              버그 제보 및 건의
-            </a>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const NoBankList = () => {
@@ -172,7 +133,7 @@ const BankListScreen = () => {
       <button className="createBankButton" onClick={() => navigate("/create")}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
-      {isPopupOpen ? <MyInfoPopup /> : null}
+      {isPopupOpen ? <MyInfoPopup setPopupOpen={setPopupOpen} /> : null}
     </div>
   );
 };
