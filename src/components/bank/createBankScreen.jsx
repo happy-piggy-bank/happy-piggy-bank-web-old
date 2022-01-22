@@ -47,8 +47,7 @@ const CreateBankScreen = () => {
           bankAmount,
           file,
         });
-        if (createResult.result === "bank_create_success") {
-          alert("등록에 성공하였습니다");
+        if (createResult.result === "success") {
           navigate("/bank");
         } else if (
           createResult.result === "no_auth_token" ||

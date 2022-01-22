@@ -12,7 +12,7 @@ const MyInfoPopup = ({ setPopupOpen }) => {
   const userLogout = async () => {
     const authToken = localStorage.getItem("authToken");
     const logoutResult = await userLogoutApi({ token: authToken });
-    if (logoutResult.result === "logout_success") {
+    if (logoutResult.result === "success") {
       localStorage.removeItem("userNum");
       localStorage.removeItem("userEmail");
       localStorage.removeItem("userName");

@@ -65,8 +65,7 @@ const BankDetailScreen = () => {
           token: authToken,
           bankId,
         });
-        if (fetchResult.result === "bank_delete_success") {
-          alert("삭제가 완료되었습니다");
+        if (fetchResult.result === "success") {
           navigate("/bank");
         } else if (
           fetchResult.result === "no_auth_token" ||

@@ -51,7 +51,7 @@ const MyPageScreen = () => {
           token: authToken,
           userPw: newPw,
         });
-        if (updateResult.result === "user_update_success") {
+        if (updateResult.result === "success") {
           alert("회원 정보 수정이 완료되었습니다");
           navigate("/bank");
         } else {
@@ -76,7 +76,7 @@ const MyPageScreen = () => {
         navigate("/login");
       } else {
         const leaveResult = await userLeaveApi({ token: authToken });
-        if (leaveResult.result === "user_leave_success") {
+        if (leaveResult.result === "success") {
           localStorage.removeItem("authToken");
           alert("회원 탈퇴가 완료되었습니다");
           navigate("/");

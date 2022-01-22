@@ -49,7 +49,7 @@ export const bankSlice = createSlice({
             }
         },
         [deleteBankEntry.fulfilled]: (state, { payload }) => {
-            if (payload.result === "bank_delete_success") {
+            if (payload.result === "success") {
                 state.deleteStatus = "success";
             } else {
                 state.deleteStatus = "error";

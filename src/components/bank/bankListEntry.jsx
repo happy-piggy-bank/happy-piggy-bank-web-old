@@ -34,7 +34,6 @@ const BankListEntry = ({ data }) => {
         navigate("/login");
       } else {
         dispatch(deleteBankEntry({ token: authToken, bankId: data.id }));
-        alert("삭제가 완료되었습니다");
         window.location.reload();
       }
     }
