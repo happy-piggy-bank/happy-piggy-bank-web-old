@@ -15,7 +15,6 @@ import PrimaryButton from "../common/primaryButton";
 import InputBar from "../common/inputBar";
 
 const MyPageScreen = () => {
-  const [initialUserName, setInitialUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [userName, setUserName] = useState(null);
   const [newPw, setNewPw] = useState(null);
@@ -47,7 +46,6 @@ const MyPageScreen = () => {
       const userInfoResult = await getUserApi({ token: authToken });
       if (userInfoResult.result === "success") {
         setUserEmail(userInfoResult.data.userEmail);
-        setInitialUserName(userInfoResult.data.userName);
         setUserName(userInfoResult.data.userName);
       } else {
         localStorage.removeItem("authToken");
@@ -59,8 +57,6 @@ const MyPageScreen = () => {
   const getUserUpdate = async () => {
     if (!userName) {
       alert("이름을 입력해주세요!");
-    } else if (initialUserName === userName) {
-      alert("변경하려는 이름이 기존과 같습니다");
     } else if (newPw && !pwCheck) {
       alert("비밀번호 확인 값을 입력해주세요!");
     } else if (newPw !== pwCheck) {
