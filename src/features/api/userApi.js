@@ -30,9 +30,9 @@ export const userLogoutApi = async ({ token }) => {
     }
 }
 
-export const userUpdateApi = async ({ token, userPw }) => {
+export const userUpdateApi = async ({ token, userName, userPw }) => {
     try {
-        const result = await axios.put(myInfoUri, { userPw }, {
+        const result = await axios.put(myInfoUri, { userName, userPw }, {
             headers: { token }
         });
         return result.data;

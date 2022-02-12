@@ -23,7 +23,7 @@ const MyPageScreen = () => {
 
   useEffect(() => {
     getUserInfo();
-  });
+  }, []);
 
   useEffect(() => {
     const keyPressListener = async (event) => {
@@ -55,9 +55,9 @@ const MyPageScreen = () => {
   };
 
   const getUserUpdate = async () => {
-    if (!newPw) {
-      alert("새 비밀번호를 입력해주세요!");
-    } else if (!pwCheck) {
+    if (!userName) {
+      alert("이름을 입력해주세요!");
+    } else if (newPw && !pwCheck) {
       alert("비밀번호 확인 값을 입력해주세요!");
     } else if (newPw !== pwCheck) {
       alert("비밀번호가 같지 않습니다");
@@ -68,13 +68,16 @@ const MyPageScreen = () => {
       } else {
         const updateResult = await userUpdateApi({
           token: authToken,
+          userName: userName,
           userPw: newPw,
         });
         if (updateResult.result === "success") {
           alert("회원 정보 수정이 완료되었습니다");
           navigate("/bank");
         } else {
-          if (updateResult.result === "same_password") {
+          if (updateResult.result === "user_name_duplicates") {
+            alert("중복된 이름입니다");
+          } else if (updateResult.result === "same_password") {
             alert("기존 비밀번호와 동일한 비밀번호입니다");
           } else if (
             updateResult.result === "no_auth_token" ||
@@ -123,7 +126,12 @@ const MyPageScreen = () => {
           </div>
           <div className="myPageUserNameArea">
             <div className="myUserInfoLabel">이름</div>
-            <div className="myUserInfoContent">{userName}</div>
+            <div className="myUserInfoContent">
+              <InputBar
+                defaultValue={userName}
+                onChange={(value) => setUserName(value)}
+              />
+            </div>
           </div>
           <div className="myPageUserPwArea">
             <div className="myUserInfoLabel">비밀번호 변경</div>
