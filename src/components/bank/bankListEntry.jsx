@@ -30,7 +30,6 @@ const BankListEntry = ({ data }) => {
     if (window.confirm("정말로 삭제하시겠어요?")) {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {
-        alert("로그인을 해주세요!");
         navigate("/login");
       } else {
         dispatch(deleteBankEntry({ token: authToken, bankId: data.id }));
