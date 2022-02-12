@@ -41,10 +41,7 @@ const LoginScreen = () => {
     } else {
       const loginResult = await userLoginApi({ userEmail, userPw });
       if (loginResult.result === "success") {
-        const { userNum, userEmail, userName, token } = loginResult.data;
-        localStorage.setItem("userNum", userNum);
-        localStorage.setItem("userEmail", userEmail);
-        localStorage.setItem("userName", userName);
+        const { token } = loginResult.data;
         localStorage.setItem("authToken", token);
         navigate("/bank");
       } else {

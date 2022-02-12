@@ -5,6 +5,7 @@ import {
   getThisYearBankList,
   clearBankList,
 } from "../../features/slices/bankSlice";
+import { getUserApi } from "../../features/api/userApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { numberWithCommas } from "../../features/utils";
@@ -21,6 +22,7 @@ import MyInfoPopup from "../common/myInfoPopup";
 import BankListComponent from "./bankListComponent";
 
 const BankListScreen = () => {
+  const [userName, setUserName] = useState(null);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const reqStatus = useSelector((state) => state.bank.status);
@@ -31,11 +33,12 @@ const BankListScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(async () => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       navigate("/login");
     } else {
+      await getUserInfo();
       dispatch(getThisYearBankList({ token: authToken, currentPage }));
     }
     return dispatch(clearBankList());
@@ -49,6 +52,21 @@ const BankListScreen = () => {
       }
     }
   }, [reqStatus, reqError, navigate]);
+
+  const getUserInfo = async () => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      navigate("/login");
+    } else {
+      const userInfoResult = await getUserApi({ token: authToken });
+      if (userInfoResult.result === "success") {
+        setUserName(userInfoResult.data.userName);
+      } else {
+        localStorage.removeItem("authToken");
+        navigate("/login");
+      }
+    }
+  };
 
   const getMoreList = async () => {
     if (!isListEnd) {
@@ -65,7 +83,7 @@ const BankListScreen = () => {
           <div className="noBankListContentArea">
             <div className="bankListDescriptionArea">
               <div className="bankListDescLeft">
-                <p>{localStorage.getItem("userName")}님 어서오세요!</p>
+                <p>{userName}님 어서오세요!</p>
               </div>
               <div className="bankListDescRight">
                 <MyInfoButton onClick={() => setPopupOpen(true)} />
@@ -92,8 +110,7 @@ const BankListScreen = () => {
           <div className="bankListDescriptionArea">
             <div className="bankListDescLeft">
               <p>
-                {new Date().getFullYear()}년의{" "}
-                {localStorage.getItem("userName")}님은
+                {new Date().getFullYear()}년의 {userName}님은
               </p>
               <p>{bankStats.totalCount}번의 행복했던 순간과 함께</p>
               <p>

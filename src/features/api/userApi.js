@@ -51,3 +51,14 @@ export const userLeaveApi = async ({ token }) => {
         return err.response.data;
     }
 }
+
+export const getUserApi = async ({ token }) => {
+    try {
+        const result = await axios.get(myInfoUri, {
+            headers: { token }
+        });
+        return result.data;
+    } catch (err) {
+        return err.response.data;
+    }
+}

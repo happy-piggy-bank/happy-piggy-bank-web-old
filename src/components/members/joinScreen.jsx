@@ -31,10 +31,7 @@ const JoinScreen = () => {
     } else {
       const joinResult = await userJoinApi({ userEmail, userPw, userName });
       if (joinResult.result === "success") {
-        const { userNum, userEmail, userName, token } = joinResult.data;
-        localStorage.setItem("userNum", userNum);
-        localStorage.setItem("userEmail", userEmail);
-        localStorage.setItem("userName", userName);
+        const { token } = joinResult.data;
         localStorage.setItem("authToken", token);
         navigate("/bank");
       } else {

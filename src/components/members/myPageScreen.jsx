@@ -1,6 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userUpdateApi, userLeaveApi } from "../../features/api/userApi";
+import {
+  userUpdateApi,
+  userLeaveApi,
+  getUserApi,
+} from "../../features/api/userApi";
 
 import "../../css/members/myPageScreen.css";
 
@@ -11,15 +15,14 @@ import PrimaryButton from "../common/primaryButton";
 import InputBar from "../common/inputBar";
 
 const MyPageScreen = () => {
+  const [userEmail, setUserEmail] = useState(null);
+  const [userName, setUserName] = useState(null);
   const [newPw, setNewPw] = useState(null);
   const [pwCheck, setPwCheck] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
-    if (!authToken) {
-      navigate("/login");
-    }
+    getUserInfo();
   });
 
   useEffect(() => {
@@ -34,6 +37,22 @@ const MyPageScreen = () => {
       document.removeEventListener("keydown", keyPressListener);
     };
   });
+
+  const getUserInfo = async () => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      navigate("/login");
+    } else {
+      const userInfoResult = await getUserApi({ token: authToken });
+      if (userInfoResult.result === "success") {
+        setUserEmail(userInfoResult.data.userEmail);
+        setUserName(userInfoResult.data.userName);
+      } else {
+        localStorage.removeItem("authToken");
+        navigate("/login");
+      }
+    }
+  };
 
   const getUserUpdate = async () => {
     if (!newPw) {
@@ -100,15 +119,11 @@ const MyPageScreen = () => {
         <div className="myPageBoxArea">
           <div className="myPageUserEmailArea">
             <div className="myUserInfoLabel">아이디</div>
-            <div className="myUserInfoContent">
-              {localStorage.getItem("userEmail")}
-            </div>
+            <div className="myUserInfoContent">{userEmail}</div>
           </div>
           <div className="myPageUserNameArea">
             <div className="myUserInfoLabel">이름</div>
-            <div className="myUserInfoContent">
-              {localStorage.getItem("userName")}
-            </div>
+            <div className="myUserInfoContent">{userName}</div>
           </div>
           <div className="myPageUserPwArea">
             <div className="myUserInfoLabel">비밀번호 변경</div>
